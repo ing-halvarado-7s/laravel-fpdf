@@ -25,7 +25,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('productos.crear');
     }
 
     /**
@@ -36,7 +36,21 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required', 'descripcion' => 'required', 'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024'
+        ]);
+
+         $producto = $request->all();
+
+         if($imagen = $request->file('imagen')) {
+             $rutaGuardarImg = 'imagen/';
+             $imagenProducto = date('YmdHis'). "." . $imagen->getClientOriginalExtension();
+             $imagen->move($rutaGuardarImg, $imagenProducto);
+             $producto['imagen'] = "$imagenProducto";
+         }
+
+         Producto::create($producto);
+         return redirect()->route('producto.index');
     }
 
     /**
@@ -58,7 +72,8 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $productos = Producto::find($id);
+        return view('productos.editar', compact('productos'));
     }
 
     /**
