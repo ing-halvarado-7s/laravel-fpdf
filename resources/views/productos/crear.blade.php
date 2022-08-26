@@ -56,7 +56,7 @@
                    </div>
                 </div>
                 <div class="form-group">
-                    <a href="{{ route('producto.create') }}" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ route('producto.index') }}" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
               </form>

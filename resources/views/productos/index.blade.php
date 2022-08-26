@@ -23,7 +23,7 @@
                     <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Descripcion</th>
+                    <th scope="col">Descripción</th>
                     <th scope="col">Imagen</th>
                     <th scope="col">Acciones</th>
 
@@ -35,10 +35,10 @@
                             <td >{{ $producto->id }}</td>
                             <td>{{ $producto->nombre }}</td>
                             <td>{{ $producto->descripcion }}</td>
-                            <td><img src="/imagen/{{ $producto->imagen }}" alt="imagen-producto" width="60%"></td>
+                            <td><img src="/imagen/{{ $producto->imagen }}" alt="imagen-producto" width="30%"></td>
                             <td>
+                                <a class="btn btn-info" href="{{ route('producto.edit',$producto->id) }}">Editar</a>
                                 <form action="{{ route('producto.destroy',$producto->id) }}" method="POST" class="formEliminar" >
-                                    <a class="btn btn-info" href="{{ route('producto.edit',$producto->id) }}">Editar</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Borrar</button>
@@ -49,7 +49,7 @@
                 </tbody>
             </table>
             <div>
-                {{!! $productos->links() !!}}
+                {!! $productos->links() !!}
             </div>
 
 
